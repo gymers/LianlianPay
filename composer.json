@@ -13,6 +13,7 @@
             "email": "2537332273@qq.com"
         }
     ],
+    "license": "MIT",
     "require": {
         "guzzlehttp/guzzle": "^7.5",
         "symfony/serializer": "5.4.21"
