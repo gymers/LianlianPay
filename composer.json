@@ -1,0 +1,20 @@
+{
+    "name": "gymers/lianlianpay",
+    "description": "lianalianpay sdk for php",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Gymers\\LianlianPay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "gymers",
+            "email": "2537332273@qq.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.5",
+        "symfony/serializer": "5.4.21"
+    }
+}
