@@ -76,7 +76,7 @@ class Gateway extends Pay implements GatewayPayInterface
             'busi_partner' => '101001',
             'no_order' => $arguments['no_order'],
             'dt_order' => $arguments['dt_order'],
-            'name_goods' => $arguments['name_goods'],
+            'name_goods' => mb_substr($arguments['name_goods'], 0, 42, 'UTF-8'),
             'money_order' => $arguments['money_order'],
             'notify_url' => $arguments['notify_url'],
             'risk_item' => json_encode($risk_item),
