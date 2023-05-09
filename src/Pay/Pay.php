@@ -4,6 +4,28 @@ namespace Gymers\LianlianPay\Pay;
 
 class Pay
 {
+    public const PAY_TYPE_L = 'L';  // 支付宝扫码
+
+    public const PAY_TYPE_V = 'V';  // 支付宝应用支付（生活号、小程序）
+
+    public const PAY_TYPE_I = 'I';  // 微信扫码
+
+    public const PAY_TYPE_W = 'W';  // 微信公众号支付
+
+    public const PAY_TYPE_20 = '20';  // 微信小程序
+
+    public const PAY_TYPE_23 = '23';  // 银联云闪付
+
+    public const PAY_TYPE_U = 'U';  // 银联二维码
+
+    public const PAY_TYPE_WECHAT_MICROPAY = 'WECHAT_MICROPAY';  // 微信付款码
+
+    public const PAY_TYPE_ALIPAY_MICROPAY = 'ALIPAY_MICROPAY';  // 支付宝付款码
+
+    public const PAY_TYPE_UNIONPAY_MICROPAY = 'UNIONPAY_MICROPAY';  // 银联付款码
+
+    public const PAY_TYPE_DC_MICROPAY = 'DC_MICROPAY';  // 数字人民币付款码
+
     /**
      * 网关支付方式.
      */
