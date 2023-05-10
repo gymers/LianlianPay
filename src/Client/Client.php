@@ -2,6 +2,8 @@
 
 namespace Gymers\LianlianPay\Client;
 
+use GuzzleHttp\Client as GuzzleHttpClient;
+
 class Client
 {
     public $method = 'POST';
@@ -14,7 +16,7 @@ class Client
 
     public function request()
     {
-        $client = new Client();
+        $client = new GuzzleHttpClient();
         $response = $client->request(
             $this->method,
             $this->uri,
