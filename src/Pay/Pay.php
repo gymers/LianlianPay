@@ -63,9 +63,9 @@ class Pay
     /**
      * RSA验签.
      *
-     * @param string $data      待签名数据(需要先排序，然后拼接)
-     * @param string $sign      签名
-     * @param string $publicKey 公钥路径
+     * @param string $data       待签名数据(需要先排序，然后拼接)
+     * @param string $sign       签名
+     * @param string $public_key 公钥路径
      *
      * @return bool
      */
@@ -83,36 +83,36 @@ class Pay
     /**
      * 生成pay_load.
      *
-     * @param string $json_string 请求体json串
-     * @param string $public_key  公钥路径
+     * @param string $json_string         请求体json串
+     * @param string $lianlian_public_key 连连公钥路径
      *
      * @return string
      */
-    public function payLoad($json_string, $public_key)
+    public function payLoad($json_string, $lianlian_public_key)
     {
-        $public_key = openssl_pkey_get_public(file_get_contents($public_key));
+        $lianlian_public_key = openssl_pkey_get_public(file_get_contents($lianlian_public_key));
         $hash_hmac_key = $this->random(32);
         $version = 'lianpay1_0_1';
         $aes_key = $this->random(32);
         $nonce = $this->random(8);
 
-        return $this->lianlianpayEncrypt($json_string, $public_key, $hash_hmac_key, $version, $aes_key, $nonce);
+        return $this->lianlianpayEncrypt($json_string, $lianlian_public_key, $hash_hmac_key, $version, $aes_key, $nonce);
     }
 
     /**
      * 连连支付加密.
      *
-     * @param string $json_string   请求体json串
-     * @param string $public_key    公钥
-     * @param string $hash_hmac_key 使用HMAC生成信息摘要时所使用的密钥
-     * @param string $version       版本号
-     * @param string $aes_key       AES加密口令
-     * @param string $nonce         AES加密非NULL的初始化向量
+     * @param string $json_string         请求体json串
+     * @param string $lianlian_public_key 连连公钥路径
+     * @param string $hash_hmac_key       使用HMAC生成信息摘要时所使用的密钥
+     * @param string $version             版本号
+     * @param string $aes_key             AES加密口令
+     * @param string $nonce               AES加密非NULL的初始化向量
      */
-    public function lianlianpayEncrypt($json_string, $public_key, $hash_hmac_key, $version, $aes_key, $nonce)
+    public function lianlianpayEncrypt($json_string, $lianlian_public_key, $hash_hmac_key, $version, $aes_key, $nonce)
     {
-        $base64_hash_hmac_key = $this->rsaEncrypt($hash_hmac_key, $public_key);
-        $base64_aes_key = $this->rsaEncrypt($aes_key, $public_key);
+        $base64_hash_hmac_key = $this->rsaEncrypt($hash_hmac_key, $lianlian_public_key);
+        $base64_aes_key = $this->rsaEncrypt($aes_key, $lianlian_public_key);
         $base64_nonce = base64_encode($nonce);
         $encry = $this->aesEncrypt(iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $json_string), $aes_key, $nonce);
         $message = $base64_nonce.'$'.$encry;

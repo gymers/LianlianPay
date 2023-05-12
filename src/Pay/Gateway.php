@@ -86,7 +86,7 @@ class Gateway extends Pay implements GatewayPayInterface
 
         $data['sign'] = $this->sign($this->format($data), $this->config->private_key);
         $json_string = json_encode($data);
-        $pay_load = $this->payLoad($json_string, $this->config->public_key);
+        $pay_load = $this->payLoad($json_string, $this->config->lianlian_public_key);
 
         $headers = ['content-type' => 'application/json;charset=UTF-8'];
         $body = json_encode(['oid_partner' => $this->config->oid_partner, 'pay_load' => $pay_load], JSON_UNESCAPED_UNICODE);

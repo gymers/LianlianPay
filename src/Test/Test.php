@@ -14,7 +14,7 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
+            'lianlian_public_key' => '',  // 连连公钥路径
         ];
         $arguments = [
             'user_id' => '',  // 用户唯一编号 注：商户用户唯一编号 保证唯一
@@ -49,7 +49,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [
@@ -72,7 +71,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [
@@ -99,7 +97,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [
@@ -123,7 +120,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [
@@ -151,7 +147,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [
@@ -174,7 +169,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [
@@ -202,7 +196,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [
@@ -226,7 +219,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [
@@ -250,7 +242,6 @@ class Test
         $config = [
             'oid_partner' => '',  // 商户号
             'private_key' => '',  // 私钥路径
-            'public_key' => '',  // 公钥路径
         ];
 
         $arguments = [

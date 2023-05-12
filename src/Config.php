@@ -32,4 +32,9 @@ class Config
      * 公钥路径.
      */
     public $public_key;
+
+    /**
+     * 连连公钥路径.
+    */
+    public $lianlian_public_key;
 }
