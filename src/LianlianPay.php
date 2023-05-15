@@ -27,7 +27,7 @@ class LianlianPay
 
     public static function __callStatic($name, $arguments)
     {
-        $self = new self($arguments);
+        $self = new self($arguments[0]);
 
         return $self->create($name);
     }
