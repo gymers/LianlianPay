@@ -16,7 +16,7 @@
     "license": "MIT",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "symfony/property-access": "^5.2",
-        "symfony/serializer": "^5.2"
+        "symfony/property-access": "^4.4",
+        "symfony/serializer": "^5.0"
     }
 }
