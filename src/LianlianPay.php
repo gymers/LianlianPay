@@ -34,7 +34,7 @@ class LianlianPay
 
     public function create($name)
     {
-        $classname = __NAMESPACE__.'\\Pay\\'.$name;
+        $classname = __NAMESPACE__.'\\Pay\\'.ucwords($name);
 
         $class = new $classname($this->config);
 
