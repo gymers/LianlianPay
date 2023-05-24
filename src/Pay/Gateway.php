@@ -64,8 +64,8 @@ class Gateway extends Pay implements GatewayPayInterface
                 'user_info_mercht_userno' => $user_id,
             ],
             [
-                'user_info_bind_phone' => $arguments['user_info_bind_phone'] ?? '',
-                'user_info_dt_register' => date('YmdHis', $arguments['user_info_dt_register']),
+                'user_info_bind_phone' => $arguments['user_info_bind_phone'],
+                'user_info_dt_register' => $arguments['user_info_dt_register'],
             ]
         );
 
@@ -81,7 +81,7 @@ class Gateway extends Pay implements GatewayPayInterface
             'notify_url' => $arguments['notify_url'],
             'risk_item' => json_encode($risk_item),
             'pay_type' => $pay_type,
-            'ext_param' => json_encode($arguments['ext_param']),
+            'ext_param' => json_encode(['appid' => $arguments['appid'], 'openid' => $arguments['openid']]),
         ];
 
         $data['sign'] = $this->sign($this->format($data), $this->config->private_key);

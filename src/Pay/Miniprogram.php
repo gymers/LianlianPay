@@ -34,8 +34,8 @@ class Miniprogram extends Pay implements PayInterface
                 'user_info_mercht_userno' => $user_id,
             ],
             [
-                'user_info_bind_phone' => $arguments['user_info_bind_phone'] ?? '',
-                'user_info_dt_register' => date('YmdHis', $arguments['user_info_dt_register']),
+                'user_info_bind_phone' => $arguments['user_info_bind_phone'],
+                'user_info_dt_register' => $arguments['user_info_dt_register'],
             ]
         );
 

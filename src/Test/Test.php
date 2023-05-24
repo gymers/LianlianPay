@@ -23,15 +23,11 @@ class Test
             'name_goods' => '',  // 商品名称
             'money_order' => '', // 交易金额（单位：元） 注：精确到小数点后两位
             'notify_url' => '',  // 服务器异步通知地址
-            'risk_item' => [  // 风险控制参数
-                'user_info_bind_phone' => '', // 用户绑定手机号 注：若未强制绑定手机号，在商户无法获取用户手机号的情况下，该参数可不传
-                'user_info_dt_register' => '', // 用户在商户系统中的注册时间 注：格式须为yyyyMMddHHmmss
-            ],
+            'user_info_bind_phone' => '', // 用户绑定手机号 注：若未强制绑定手机号，在商户无法获取用户手机号的情况下，该参数可不传
+            'user_info_dt_register' => '', // 用户在商户系统中的注册时间 注：格式须为yyyyMMddHHmmss
             'pay_type' => '', // 支付方式：L-支付宝扫码 V-支付宝应用支付（生活号、小程序） I-微信扫码 W-微信公众号支付 20-微信小程序 23-银联云闪付 U-银联二维码
-            'ext_param' => [ // 扩展参数（可选）注：微信公众号，微信小程序，微信APP支付时需传额外扩展参数
-                'appid' => '', // 微信公众号和微信小程序需传appid和openid, 微信APP支付需传 appid
-                'openid' => '',
-            ],
+            'appid' => '', // 扩展参数（可选）注微信公众号和微信小程序需传appid和openid, 微信APP支付需传 appid
+            'openid' => '',
         ];
         $response = LianlianPay::gateway($config)->pay($arguments);
 
@@ -251,10 +247,8 @@ class Test
             'name_goods' => '',  // 商品名称
             'money_order' => '', // 交易金额（单位：元） 注：精确到小数点后两位
             'notify_url' => '',  // 服务器异步通知地址
-            'risk_item' => [  // 风险控制参数
-                'user_info_bind_phone' => '', // 用户绑定手机号 若未强制绑定手机号，在商户无法获取用户手机号的情况下，该参数可不传
-                'user_info_dt_register' => '', // 用户在商户系统中的注册时间， 格式须为yyyyMMddHHmmss
-            ],
+            'user_info_bind_phone' => '', // 用户绑定手机号 若未强制绑定手机号，在商户无法获取用户手机号的情况下，该参数可不传
+            'user_info_dt_register' => '', // 用户在商户系统中的注册时间， 格式须为yyyyMMddHHmmss
         ];
 
         $response = LianlianPay::miniprogram($config)->pay($arguments);
