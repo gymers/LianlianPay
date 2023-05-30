@@ -74,6 +74,7 @@ class Aggregation extends Pay implements AggregationPayInterface
             'txn_seqno' => $arguments['txn_seqno'],
             'txn_time' => date('YmdHis'),
             'order_amount' => $arguments['order_amount'],
+            'order_info' => $arguments['order_info'] ?? '',
             'notify_url' => $arguments['notify_url'],
         ];
 

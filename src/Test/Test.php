@@ -124,6 +124,7 @@ class Test
             'pay_type' => '', // 支付方式 注：WECHAT_MICROPAY-微信付款码 ALIPAY_MICROPAY-支付宝付款码 UNIONPAY_MICROPAY-银联付款码 DC_MICROPAY-数字人民币付款码
             'txn_seqno' => '',  // 商户支付订单号
             'order_amount' => '',  // 订单金额（单位：元） 注：精确到小数点后两位
+            'order_info' => '', // 订单描述（选填）
             'notify_url' => '',  // 支付结果通知地址
         ];
 
