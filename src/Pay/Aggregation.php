@@ -75,6 +75,7 @@ class Aggregation extends Pay implements AggregationPayInterface
             'txn_time' => date('YmdHis'),
             'order_amount' => $arguments['order_amount'],
             'order_info' => $arguments['order_info'] ?? '',
+            'pay_expire' => $arguments['pay_expire'] ?? '',
             'notify_url' => $arguments['notify_url'],
         ];
 

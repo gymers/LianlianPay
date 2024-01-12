@@ -20,6 +20,8 @@ class Gateway extends Pay implements GatewayPayInterface
 
     public const REFUND_QUERY_URI = 'https://queryapi.lianlianpay.com/refundquery.htm';
 
+    public const ORDER_CLOSE_URI = 'https://openapi.lianlianpay.com/mch/v1/ipay/close';
+
     public $config;
 
     public function __construct(Config $config)
@@ -79,6 +81,7 @@ class Gateway extends Pay implements GatewayPayInterface
             'name_goods' => mb_substr($arguments['name_goods'], 0, 42, 'UTF-8'),
             'money_order' => $arguments['money_order'],
             'notify_url' => $arguments['notify_url'],
+            'valid_order' => $arguments['valid_order'] ?? '',
             'risk_item' => json_encode($risk_item),
             'pay_type' => $pay_type,
             'ext_param' => json_encode(['appid' => $arguments['appid'], 'openid' => $arguments['openid']]),
@@ -149,5 +152,21 @@ class Gateway extends Pay implements GatewayPayInterface
         ];
 
         return $this->request(self::REFUND_QUERY_URI, $data);
+    }
+
+    /**
+     * orderClose.
+     *
+     * @return mixed
+     */
+    public function orderClose(array $arguments)
+    {
+        $data = [
+            'mch_id' => $this->config->oid_partner,
+            'txn_seqno' => $arguments['txn_seqno'],
+            'txn_date' => $arguments['txn_date'],
+        ];
+
+        return $this->request(self::ORDER_CLOSE_URI, $data);
     }
 }

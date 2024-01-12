@@ -109,6 +109,29 @@ class Test
     }
 
     /**
+     * 网关支付订单关闭.
+     */
+    public function gatewayOrderClose()
+    {
+        $config = [
+            'oid_partner' => '',  // 商户号
+            'private_key' => '',  // 私钥路径
+        ];
+
+        $arguments = [
+            'txn_seqno' => '',  // 商户支付订单号
+            'txn_date' => '',  // 交易日期 支付交易发生日期，格式：YYYYMMDD
+        ];
+
+        $response = LianlianPay::gateway($config)->orderClose($arguments);
+
+        if ('0000' == $response['ret_code']) {
+        }
+
+        throw new \Exception($response['ret_msg']);
+    }
+
+    /**
      * 聚合支付.
      */
     public function aggregationPay()
