@@ -28,6 +28,7 @@ class Test
             'pay_type' => '', // 支付方式：L-支付宝扫码 V-支付宝应用支付（生活号、小程序） I-微信扫码 W-微信公众号支付 20-微信小程序 23-银联云闪付 U-银联二维码
             'appid' => '', // 扩展参数（可选）注微信公众号和微信小程序需传appid和openid, 微信APP支付需传 appid
             'openid' => '',
+            'valid_order' => '',  // 订单有效时间 分钟为单位，默认为 10080 分钟（7 天），从创建时间开始，过了此订单有效时间此笔订单就会被设置为失败状态不能再重新进行支付。
         ];
         $response = LianlianPay::gateway($config)->pay($arguments);
 
@@ -148,6 +149,7 @@ class Test
             'txn_seqno' => '',  // 商户支付订单号
             'order_amount' => '',  // 订单金额（单位：元） 注：精确到小数点后两位
             'order_info' => '', // 订单描述（选填）
+            'pay_expire' => '', // 订单有效时间 分钟为单位。
             'notify_url' => '',  // 支付结果通知地址
         ];
 

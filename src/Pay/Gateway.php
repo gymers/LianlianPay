@@ -81,7 +81,7 @@ class Gateway extends Pay implements GatewayPayInterface
             'name_goods' => mb_substr($arguments['name_goods'], 0, 42, 'UTF-8'),
             'money_order' => $arguments['money_order'],
             'notify_url' => $arguments['notify_url'],
-            'valid_order' => $arguments['valid_order'] ?? '',
+            'valid_order' => $arguments['valid_order'] ?? '10080',
             'risk_item' => json_encode($risk_item),
             'pay_type' => $pay_type,
             'ext_param' => json_encode(['appid' => $arguments['appid'], 'openid' => $arguments['openid']]),
