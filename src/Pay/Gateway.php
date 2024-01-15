@@ -6,6 +6,8 @@ use Gymers\LianlianPay\Client\Client;
 use Gymers\LianlianPay\Config;
 use Gymers\LianlianPay\Exception\PayTypeException;
 use Gymers\LianlianPay\Contracts\GatewayPayInterface;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 /**
  * 网关支付.
@@ -44,7 +46,17 @@ class Gateway extends Pay implements GatewayPayInterface
         $client = new Client();
         $client->setMethod('POST')->setUri($uri)->setHeaders($headers)->setBody($body);
 
-        return $client->request();
+        $log = new Logger('lianlian');
+        $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
+        $log->addInfo('lianlian.request', ['uri' => $uri, 'headers' => $headers, 'body' => $body]);
+
+        $response = $client->request();
+
+        $log = new Logger('lianlian');
+        $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
+        $log->addInfo('lianlian.response', ['response' => $response]);
+
+        return $response;
     }
 
     /**
@@ -81,11 +93,13 @@ class Gateway extends Pay implements GatewayPayInterface
             'name_goods' => mb_substr($arguments['name_goods'], 0, 42, 'UTF-8'),
             'money_order' => $arguments['money_order'],
             'notify_url' => $arguments['notify_url'],
-            'valid_order' => $arguments['valid_order'] ?? '10080',
             'risk_item' => json_encode($risk_item),
             'pay_type' => $pay_type,
             'ext_param' => json_encode(['appid' => $arguments['appid'], 'openid' => $arguments['openid']]),
         ];
+        if (isset($arguments['valid_order']) && !empty($arguments['valid_order'])) {
+            $data['valid_order'] = $arguments['valid_order'];
+        }
 
         $data['sign'] = $this->sign($this->format($data), $this->config->private_key);
         $json_string = json_encode($data);
@@ -152,21 +166,5 @@ class Gateway extends Pay implements GatewayPayInterface
         ];
 
         return $this->request(self::REFUND_QUERY_URI, $data);
-    }
-
-    /**
-     * orderClose.
-     *
-     * @return mixed
-     */
-    public function orderClose(array $arguments)
-    {
-        $data = [
-            'mch_id' => $this->config->oid_partner,
-            'txn_seqno' => $arguments['txn_seqno'],
-            'txn_date' => $arguments['txn_date'],
-        ];
-
-        return $this->request(self::ORDER_CLOSE_URI, $data);
     }
 }

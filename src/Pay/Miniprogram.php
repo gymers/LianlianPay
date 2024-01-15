@@ -5,6 +5,8 @@ namespace Gymers\LianlianPay\Pay;
 use Gymers\LianlianPay\Client\Client;
 use Gymers\LianlianPay\Config;
 use Gymers\LianlianPay\Contracts\PayInterface;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 /**
  * 连连微信小程序支付.
@@ -63,9 +65,19 @@ class Miniprogram extends Pay implements PayInterface
         $headers = ['content-type' => 'application/json;charset=UTF-8'];
         $body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
+        $log = new Logger('lianlian');
+        $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
+        $log->addInfo('lianlian.request', ['headers' => $headers, 'body' => $body]);
+
         $client = new Client();
         $client->setUri(self::URI)->setHeaders($headers)->setBody($body);
 
-        return $client->request();
+        $response = $client->request();
+
+        $log = new Logger('lianlian');
+        $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
+        $log->addInfo('lianlian.response', ['response' => $response]);
+
+        return $response;
     }
 }
