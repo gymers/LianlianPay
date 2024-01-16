@@ -167,7 +167,7 @@ class Aggregation extends Pay implements AggregationPayInterface
         if (!empty($arguments['txn_seqno'])) {
             $data['txn_seqno'] = $arguments['txn_seqno'];
         }
-        if (!empty($arguments['txn_seqno'])) {
+        if (!empty($arguments['platform_txno'])) {
             $data['platform_txno'] = $arguments['platform_txno'];
         }
 
