@@ -51,16 +51,15 @@ class Aggregation extends Pay implements AggregationPayInterface
 
         $log = new Logger('lianlian');
         $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
-        $log->addInfo('lianlian.request', ['uri' => $uri, 'headers' => $headers, 'body' => $body]);
+        $log->addInfo('request', ['uri' => $uri, 'headers' => $headers, 'body' => $body]);
 
         $client = new Client();
         $client->setUri($uri)->setHeaders($headers)->setBody($body);
-
         $response = $client->request();
 
         $log = new Logger('lianlian');
         $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
-        $log->addInfo('lianlian.response', ['response' => $response]);
+        $log->addInfo('response', ['response' => $response]);
 
         return $response;
     }

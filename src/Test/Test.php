@@ -230,7 +230,8 @@ class Test
         ];
 
         $arguments = [
-            'txn_seqno' => '',  // 商户支付订单号
+            'txn_seqno' => '',  // 商户支付订单号，与平台支付订单号二者取一
+            'platform_txno' => '',  // 平台支付订单号，与商户支付订单号二者取一
             'txn_date' => '',  // 交易日期 支付交易发生日期，格式：YYYYMMDD
         ];
 

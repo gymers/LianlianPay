@@ -48,13 +48,13 @@ class Gateway extends Pay implements GatewayPayInterface
 
         $log = new Logger('lianlian');
         $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
-        $log->addInfo('lianlian.request', ['uri' => $uri, 'headers' => $headers, 'body' => $body]);
+        $log->addInfo('request', ['uri' => $uri, 'headers' => $headers, 'body' => $body]);
 
         $response = $client->request();
 
         $log = new Logger('lianlian');
         $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
-        $log->addInfo('lianlian.response', ['response' => $response]);
+        $log->addInfo('response', ['response' => $response]);
 
         return $response;
     }
@@ -108,10 +108,19 @@ class Gateway extends Pay implements GatewayPayInterface
         $headers = ['content-type' => 'application/json;charset=UTF-8'];
         $body = json_encode(['oid_partner' => $this->config->oid_partner, 'pay_load' => $pay_load], JSON_UNESCAPED_UNICODE);
 
+        $log = new Logger('lianlian');
+        $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
+        $log->addInfo('request', ['uri' => self::PAY_URI, 'headers' => $headers, 'body' => $body]);
+
         $client = new Client();
         $client->setUri(self::PAY_URI)->setHeaders($headers)->setBody($body);
+        $response = $client->request();
 
-        return $client->request();
+        $log = new Logger('lianlian');
+        $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
+        $log->addInfo('response', ['response' => $response]);
+
+        return $response;
     }
 
     /**

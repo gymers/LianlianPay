@@ -67,16 +67,15 @@ class Miniprogram extends Pay implements PayInterface
 
         $log = new Logger('lianlian');
         $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
-        $log->addInfo('lianlian.request', ['headers' => $headers, 'body' => $body]);
+        $log->addInfo('request', ['headers' => $headers, 'body' => $body]);
 
         $client = new Client();
         $client->setUri(self::URI)->setHeaders($headers)->setBody($body);
-
         $response = $client->request();
 
         $log = new Logger('lianlian');
         $log->pushHandler(new StreamHandler($this->config->log_path, Logger::INFO, true, 0777));
-        $log->addInfo('lianlian.response', ['response' => $response]);
+        $log->addInfo('response', ['response' => $response]);
 
         return $response;
     }
